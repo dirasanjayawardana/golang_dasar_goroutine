@@ -1,6 +1,9 @@
 # GoRoutines
 - Parallel and Concurency Programming
 
+## Cara runing unit test
+- `go test -v -run=NamaFunctionUnitTest`
+
 ## Process
 - Adalah sebuah eksekusi dari program
 - Mengkonsumsi memory besar
@@ -54,3 +57,7 @@ Contoh Concurrency Programming: Misalkan ada dua tugas: membaca file besar dan m
 - G -> Goroutine
 - M -> Thread (Machine)
 - P -> Processor
+
+## Membuat Goroutine
+- Untuk membuat goroutine cukup menambahkan perintah `go` sebelum memanggil function
+- function tersebut akan berjalan secara asynchronous, tidak ditunggu sampai function tersebut selesai
