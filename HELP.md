@@ -61,3 +61,4 @@ Contoh Concurrency Programming: Misalkan ada dua tugas: membaca file besar dan m
 ## Membuat Goroutine
 - Untuk membuat goroutine cukup menambahkan perintah `go` sebelum memanggil function
 - function tersebut akan berjalan secara asynchronous, tidak ditunggu sampai function tersebut selesai
+- Goroutine kurang cocok untuk function yang mengembalikan value
