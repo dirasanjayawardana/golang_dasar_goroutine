@@ -22,6 +22,7 @@ func DisplayNumber(number int) {
 	fmt.Println("Display", number)
 }
 
+// go test -v -run=TestManyGoroutine
 func TestManyGoroutine(t *testing.T) {
 	for i := 0; i < 100000; i++ {
 		go DisplayNumber(i)
