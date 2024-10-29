@@ -62,3 +62,11 @@ Contoh Concurrency Programming: Misalkan ada dua tugas: membaca file besar dan m
 - Untuk membuat goroutine cukup menambahkan perintah `go` sebelum memanggil function
 - function tersebut akan berjalan secara asynchronous, tidak ditunggu sampai function tersebut selesai
 - Goroutine kurang cocok untuk function yang mengembalikan value
+
+## Channel
+- Tempat komunikasi secara synchronous yang bisa dilakukan oleh goroutine
+- Di Channel terdapat pengirim dan penerima, yang biasanya pengirim dan penerima adalah goroutine yang berbeda
+- Channel cocok sebagai alternatif seperti mekanisme async await, atau seperti Future di Java
+- Ketika mengirim data ke Channel, goroutine akan ter-block, sampai ada yang menerima data tersebut
+- Channel secara default hanya bisa menerima satu data, ketika data sudah diterima maka Channel akan kembali kosong
+- Channel harus diclose ketika tidak digunakan
