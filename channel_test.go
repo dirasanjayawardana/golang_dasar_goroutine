@@ -9,7 +9,7 @@ import (
 
 func TestCreateChannel(t *testing.T) {
 	channel := make(chan string) // Membuat channel
-	defer close(channel) // Menutup channel ketika sudah tidak digunakan
+	defer close(channel)         // Menutup channel ketika sudah tidak digunakan
 
 	go func() {
 		time.Sleep(2 * time.Second)
@@ -60,9 +60,15 @@ func TestInOutChannel(t *testing.T) {
 	time.Sleep(5 * time.Second)
 }
 
+// secara default channel hanya bisa menerima satu data, jika menambahkan data ke 2 akan menunggu sampai data ke 1 ada yg mengambil
+// Buffered channel digunakan untuk menampung data antrian di Channel
+// Data yang diambil, urutannya sesuai dengan data yg dimasukkan
 func TestBufferedChannel(t *testing.T) {
-	channel := make(chan string, 3)
+	channel := make(chan string, 3) // membuat channel yang bisa menampung sampai 3 data
 	defer close(channel)
+
+	fmt.Println(cap(channel)) // melihat kapasitas channel
+	fmt.Println(len(channel)) // melihat banyaknya data yang sedang disimpan di channel
 
 	go func() {
 		channel <- "Dira"
@@ -80,6 +86,8 @@ func TestBufferedChannel(t *testing.T) {
 	fmt.Println("Selesai")
 }
 
+// Ketika data dikirim ke channel secara terus menerus, untuk melakukan pengecekan bisa menggunakan for range
+// ketika channel di close(), secara otomatis perulangan tersebut akan berhenti
 func TestRangeChannel(t *testing.T) {
 	channel := make(chan string)
 
@@ -97,6 +105,7 @@ func TestRangeChannel(t *testing.T) {
 	fmt.Println("Selesai")
 }
 
+// select digunakan untuk mendapatkan data dari beberapa channel
 func TestSelectChannel(t *testing.T) {
 	channel1 := make(chan string)
 	channel2 := make(chan string)
