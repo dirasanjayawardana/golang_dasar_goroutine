@@ -136,6 +136,8 @@ func TestSelectChannel(t *testing.T) {
 	}
 }
 
+// secara default ketika melakukan select ke channel yg tidak ada datanya, akan menunggu sampai datanya ada
+// dalam select bisa menambahkan default, yang akan dieksekusi jika memang semua channel yang diselect tidak ada datanya
 func TestDefaultSelectChannel(t *testing.T) {
 	channel1 := make(chan string)
 	channel2 := make(chan string)
