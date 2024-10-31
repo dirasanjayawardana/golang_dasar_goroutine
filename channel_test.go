@@ -23,6 +23,7 @@ func TestCreateChannel(t *testing.T) {
 	time.Sleep(5 * time.Second)
 }
 
+// Ketika Channel digunakan sebagai parameter pada sebuah function, maka otomatis akan pass by refference, tidak perlu menggunakan pointer untuk channel
 func GiveMeResponse(channel chan string) {
 	time.Sleep(2 * time.Second)
 	channel <- "Dira Sanjaya Wardana"
@@ -40,11 +41,14 @@ func TestChannelAsParameter(t *testing.T) {
 	time.Sleep(5 * time.Second)
 }
 
+// secara default ketika channel dijadikan parameter sebuah func, bisa menerima dan mengirim data ke channel
+// membuat parameter channel yang hanya bisa mengirim data ke channel
 func OnlyIn(channel chan<- string) {
 	time.Sleep(2 * time.Second)
 	channel <- "Dira Sanjaya Wardana"
 }
 
+// membuat parameter channel yang hanya bisa menerima data dari channel
 func OnlyOut(channel <-chan string) {
 	data := <-channel
 	fmt.Println(data)

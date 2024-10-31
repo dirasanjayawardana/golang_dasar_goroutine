@@ -70,3 +70,4 @@ Contoh Concurrency Programming: Misalkan ada dua tugas: membaca file besar dan m
 - Ketika mengirim data ke Channel, goroutine akan ter-block, sampai ada yang menerima data tersebut
 - Channel secara default hanya bisa menerima satu data, ketika data sudah diterima maka Channel akan kembali kosong
 - Channel harus diclose ketika tidak digunakan
+- Ketika Channel digunakan sebagai parameter pada sebuah function, maka otomatis akan pass by refference, tidak perlu menggunakan pointer untuk channel
