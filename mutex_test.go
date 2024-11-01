@@ -63,6 +63,7 @@ func TestRWMutex(t *testing.T) {
 	fmt.Println("Total Balance", account.GetBalance())
 }
 
+// Simulasi proses deadlock (go routine saling menunggu, sehingga tidak ada go routine yang berjalan)
 type UserBalance struct {
 	sync.Mutex
 	Name    string
@@ -81,26 +82,26 @@ func (user *UserBalance) Change(amount int) {
 	user.Balance = user.Balance + amount
 }
 
-func Transfer(user1 *UserBalance, user2 *UserBalance, amount int) {
-	user1.Lock()
-	fmt.Println("Lock user1", user1.Name)
-	user1.Change(-amount)
+func Transfer(pengirim *UserBalance, penerima *UserBalance, amount int) {
+	pengirim.Lock()
+	fmt.Println("Lock pengirim", pengirim.Name)
+	pengirim.Change(-amount)
 
 	time.Sleep(1 * time.Second)
 
-	user2.Lock()
-	fmt.Println("Lock user2", user2.Name)
-	user2.Change(amount)
+	penerima.Lock()
+	fmt.Println("Lock penerima", penerima.Name)
+	penerima.Change(amount)
 
 	time.Sleep(1 * time.Second)
 
-	user1.Unlock()
-	user2.Unlock()
+	pengirim.Unlock()
+	penerima.Unlock()
 }
 
 func TestDeadlock(t *testing.T) {
 	user1 := UserBalance{
-		Name:    "Eko",
+		Name:    "Dira",
 		Balance: 1000000,
 	}
 

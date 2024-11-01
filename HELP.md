@@ -71,3 +71,19 @@ Contoh Concurrency Programming: Misalkan ada dua tugas: membaca file besar dan m
 - Channel secara default hanya bisa menerima satu data, ketika data sudah diterima maka Channel akan kembali kosong
 - Channel harus diclose ketika tidak digunakan
 - Ketika Channel digunakan sebagai parameter pada sebuah function, maka otomatis akan pass by refference, tidak perlu menggunakan pointer untuk channel
+
+## Mutex (Mutual Exclusion)
+- Mutex (Mutual Exclusion) -> bisa digunakan untuk melakukan locking dan unlocking variabel
+- sehingga hanya ada 1 goroutine yang bisa melakukan manipulasi data
+
+## Wait Group
+- Fitur untuk menunggu sebuah proses selsai dilakukan (mirip seperti await di javaScript)
+
+## Once
+- Fitur untuk memastikan sebuah function hanya dieksekusi sekali, hanya bisa untuk function tanpa parameter
+- Jika ada banyak goroutine yg mengakses, hanya goroutine pertama yang dapat mengeksekusi function tersebut, goroutine yang lain akan dihiraukan
+
+## Pool
+- Adalah implementasi design pattern bernama object pool pattern
+- design pattern Pool ini digunakan untuk menyimpan data, kemudian menggunakan datanya, setelah selesai bisa menyimpan kembali ke Pool nya
+- Implementasi Pool di GoLang sudah aman dari problem race condition
