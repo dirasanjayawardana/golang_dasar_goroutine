@@ -87,3 +87,21 @@ Contoh Concurrency Programming: Misalkan ada dua tugas: membaca file besar dan m
 - Adalah implementasi design pattern bernama object pool pattern
 - design pattern Pool ini digunakan untuk menyimpan data, kemudian menggunakan datanya, setelah selesai bisa menyimpan kembali ke Pool nya
 - Implementasi Pool di GoLang sudah aman dari problem race condition
+
+## Map
+- sync.Map mirip seperti GoLang Map, bedanya menggunakan concurrent dengan goroutine, dan sudah aman dari race condition
+- Store(key, value) -> menyimpan data ke Map
+- Load(key) -> mengambil data dari Map dengan key
+- Delete(key) -> menghapus data di Map sesuai key
+- Range(func(key, value)) -> melakukan iterasi seluruh data di Map
+
+## Cond (Condition)
+- Cond adalah implementasi locking berbasis kondisi, membutukan locker (Mutex atau RWMutex)
+- Berbeda dengan locker biasa, Cond memiliki method Wait() untuk menunggu apakah perlu menunggu atau tidak
+- Signal() -> untuk memberi tahu goroutine tidak perlu menunggu
+- Broadcast() -> untuk memberi tahu semua goroutine agar tidak perlu menunggu lagi
+- sync.NewCond(Locker) -> membuat Cond
+
+## Atomic
+- Atomic -> package untuk menggunakan tipe data primitive secara aman pada proses concurrent
+- Tidak perlu melakukan locking manual dengan Mutex
